@@ -1,14 +1,35 @@
-var bmi = function(weight, height) {
-  return (weight / Math.pow(height,2));
+var add = function(number1, number2) {
+  return number1 + number2;
 };
-var weight = parseFloat(prompt("Enter your weight in kilograms:"));
-var height = parseFloat(prompt("Enter you height in meters:"));
-var result = bmi(weight, height).toFixed(2);
-alert(result);
 
-var celsius = function(farenheight) {
-  return (farenheight - 32)/1.8;
+var subtract = function(number1, number2) {
+  return number1 - number2;
 };
-var farenheight = parseFloat(prompt("Enter the temperature in farenheight:"));
-var result = celsius(farenheight).toFixed(2);
-alert("Temperature in celsius is " + result + " degrees.");
+
+var multiply = function(number1, number2) {
+  return number1 * number2;
+};
+
+var divide = function(number1, number2) {
+  return number1 / number2;
+};
+
+$(document).ready(function() {
+  $("form#calculator").submit(function() {
+    event.preventDefault();
+    var number1 = parseInt($("#input1").val());
+    var number2 = parseInt($("#input2").val());
+    var operator = $("input:radio[name=operator]:checked").val();
+    var result;
+    if (operator === "add") {
+      result = add(number1, number2);
+    } else if (operator === "subtract") {
+      result = subtract(number1, number2);
+    } else if (operator === "multiply") {
+      result = multiply(number1, number2);
+    } else if (operator === "divide") {
+      result = divide(number1, number2);
+    }
+    $("#output").text(result);
+  });
+});
